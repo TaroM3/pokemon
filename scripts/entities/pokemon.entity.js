@@ -14,7 +14,24 @@ export class Pokemon{
     attack = ({enemySelected, attackSelected = 0}) => {
         if(this.element.strongAgainst.some(element => element === enemySelected.type)){
             let damage = Math.round(this.moves[attackSelected].damage * 1.2)
-            enemySelected.lifePoints = enemySelected.lifePoints - damage
         } 
-    } 
+        enemySelected.lifePoints = enemySelected.lifePoints - damage
+    }
+
+    getLifePoints = () => {
+        return this.lifePoints
+    }
+
+    getDamage = (attackSelected, bonus) => {
+        if (bonus) {
+            if(bonus === 'strong'){
+                return Math.round(this.moves[attackSelected].damage * 1.2)
+            }else if(bonus === 'weak'){
+                return Math.round(this.moves[attackSelected].damage * 0.8)
+            }
+        } else {
+            return this.moves[attackSelected].damage
+        }
+    }
+
 }

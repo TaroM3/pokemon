@@ -1,7 +1,2 @@
-variables
-    let 
-    const
-conditionals
-    if
-    else
+
     
