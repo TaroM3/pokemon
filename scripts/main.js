@@ -1,17 +1,4 @@
-// Pokemon = {
-//     name: String,
-//     lifePoints: Number,
-//     strength: Number,
-//     moves: [String],
-//     skillPower: Number,
-//     experience: Number,
-//     level: Number,
-//     element: String
-// }
 
-// import Pokemon from "./entities/pokemon.entity.js"
-
-// import { Pokemon } from './entities/pokemon.entity.js'
 
 
 class Pokemon {
@@ -145,8 +132,7 @@ const showPokemon = (pokemon) => {
     console.log(
         showStats(pokemon),
         '\t Moves:\n',
-        // `\t \t 1. ${pokemon.moves[0].name} (${pokemon.moves[0].type})\n`,
-        // `\t \t \t Damage: ${pokemon.moves[0].damage}`
+
         showMoves(pokemon)
     )
 }
@@ -155,12 +141,9 @@ const showPokemon = (pokemon) => {
 //This function get the user's pokemons and the enemies generated 
 const choosePokemonToAttack = (pokemones, enemies, index) => {
 
-    // console.log(menuStatsPokemonString)
     
     let pokemonSelected = index
-    // do {
-        //     pokemonSelected = Number(prompt('Pokemones\n------------------\n'+ menuStatsPokemonString, '1 o 2 o 3'))
-        // } while (pokemonSelected !== 1 && pokemonSelected !== 2 && pokemonSelected !== 3);
+
         
         let attackSelected = 0
         do {
