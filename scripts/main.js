@@ -38,7 +38,6 @@ class Pokemon {
         }
         return behaviour[bonus]
     }
-
 }
 const fireMoves = [{ name: 'Scratch', damage: 10, type: 'normal' }, { name: 'Fire Fang', damage: 11, type: 'fuego' }, { name: 'Fire Spin', damage: 13, type: 'fuego' }]
 const waterMoves = [{ name: 'Tackle', damage: 10, type: 'normal' }, { name: 'Water Gun', damage: 11, type: 'agua' }, { name: 'Aqua Tail', damage: 13, type: 'agua' }]
@@ -49,12 +48,13 @@ const pokemonElement = {
     '3': { type: 'planta', moves: plantMoves, strongAgainst: ['agua'], weakAgainst: ['fuego'] }
 }
 const pokeballsKitx3 = []
+const enemies = []
 const pokemonCreationMenu = (pokeballsKitx3) => {
     let pokemonName
     let pokemonElementChosen
     do {
         pokemonName = prompt("Ingrese el nombre de su pokemon.", '');
-    } while (pokemonName === '');
+    } while(pokemonName === '');
 
     console.log(pokemonName);
     do {
@@ -78,14 +78,11 @@ const createEnemy = () => {
         case 3:
             return new Pokemon({ name: 'Bulbasaur', healthPoints: 100, moves: pokemonElement[String(random)].moves, element: { type: pokemonElement[String(random)].type, strongAgainst: pokemonElement[String(random)].strongAgainst, weakAgainst: pokemonElement[String(random)].weakAgainst } })
     }
-
 }
 const showMoves = (pokemon) => {
     let movesString = ''
     for (let index = 0; index < pokemon.moves.length; index++) {
-
         movesString += `\t \t ${index + 1}. ${pokemon.moves[index].name} (${pokemon.moves[index].type})\n \t \t \t Damage: ${pokemon.moves[index].damage}\n`
-
     }
     return movesString
 }
@@ -144,27 +141,15 @@ const battle = (pokeballsKitx3, enemies) => {
                 winner('Has vencido al rival. . . ')
             }
             canFight = false
-        }
-        
+        }    
     }while (canFight)
 }
-
 const main = () => {
-
-    const enemies = []
-    const pokeballsKitx3 = []
-
     for (let index = 0; index < 3; index++) {
         pokemonCreationMenu(pokeballsKitx3)
         enemies.push(createEnemy())
     }
-
-    console.log(pokeballsKitx3)
-    console.log(enemies)
-
     battle(pokeballsKitx3, enemies)
     console.log('juego terminado')
 }
-
-
 main()
