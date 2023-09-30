@@ -99,6 +99,9 @@ const showPokemon = (pokemon) => {
         showMoves(pokemon)
     )
 }
+const winner = (winner) => {
+    console.log(winner)
+}
 const choosePokemonToAttack = (pokemones, enemies, index) => {
     let pokemonSelected = index
         let attackSelected = 0
@@ -133,7 +136,16 @@ const battle = (pokeballsKitx3, enemies) => {
             choosePokemonToAttack(pokeballsKitx3, enemies, index)
             attackRandom(pokeballsKitx3, enemies, index)
         }
-        if ((pokeballsKitx3[0].healthPoints === 0 && pokeballsKitx3[1].healthPoints === 0 && pokeballsKitx3[2].healthPoints === 0) || (enemies[0].healthPoints === 0 && enemies[1].healthPoints === 0 && enemies[2].healthPoints === 0)) canFight = false
+        canFight = confirm('Desea continuar jugando?')
+        if ((pokeballsKitx3[0].healthPoints === 0 && pokeballsKitx3[1].healthPoints === 0 && pokeballsKitx3[2].healthPoints === 0) || (enemies[0].healthPoints === 0 && enemies[1].healthPoints === 0 && enemies[2].healthPoints === 0)) {
+            if (pokeballsKitx3[0].healthPoints === 0 && pokeballsKitx3[1].healthPoints === 0 && pokeballsKitx3[2].healthPoints === 0) {
+                winner('El rival te ha derrotado. . . ')
+            }else{
+                winner('Has vencido al rival. . . ')
+            }
+            canFight = false
+        }
+        
     }while (canFight)
 }
 
@@ -151,6 +163,7 @@ const main = () => {
     console.log(enemies)
 
     battle(pokeballsKitx3, enemies)
+    console.log('juego terminado')
 }
 
 
