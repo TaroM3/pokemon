@@ -1,4 +1,5 @@
 class Pokemon {
+
     constructor({ name, healthPoints = 100, strength = 3, moves = [], skillPower = 5, experience = 0, level = 0, element }) {
         this.name = name
         this.healthPoints = healthPoints
@@ -9,6 +10,7 @@ class Pokemon {
         this.level = level
         this.element = element
     }
+
     attack = ({ enemySelected, attackSelected = 1 }) => {
         if (enemySelected.healthPoints !== 0) { 
             attackSelected -= 1
@@ -27,9 +29,11 @@ class Pokemon {
             console.log(`No se puede atacar a ${enemySelected.name}, ya ha sido derrotado...`)
         }
     }
+
     getHealthPoints = () => {
         return this.healthPoints
     }
+
     getDamage = (attackSelected, bonus) => {
         const behaviour = {
             strong: Math.round(this.moves[attackSelected].damage * 1.2),
@@ -39,6 +43,7 @@ class Pokemon {
         return behaviour[bonus]
     }
 }
+
 const fireMoves = [{ name: 'Scratch', damage: 10, type: 'normal' }, { name: 'Fire Fang', damage: 11, type: 'fuego' }, { name: 'Fire Spin', damage: 13, type: 'fuego' }]
 const waterMoves = [{ name: 'Tackle', damage: 10, type: 'normal' }, { name: 'Water Gun', damage: 11, type: 'agua' }, { name: 'Aqua Tail', damage: 13, type: 'agua' }]
 const plantMoves = [{ name: 'Tackle', damage: 10, type: 'normal' }, { name: 'Vine Whip', damage: 11, type: 'planta' }, { name: 'Seed Bomb', damage: 13, type: 'planta' }]
@@ -47,6 +52,7 @@ const pokemonElement = {
     '2': { type: 'agua', moves: waterMoves, strongAgainst: ['fuego'], weakAgainst: ['planta'] },
     '3': { type: 'planta', moves: plantMoves, strongAgainst: ['agua'], weakAgainst: ['fuego'] }
 }
+
 const pokeballsKitx3 = []
 const enemies = []
 const pokemonCreationMenu = (pokeballsKitx3) => {
@@ -65,9 +71,11 @@ const pokemonCreationMenu = (pokeballsKitx3) => {
 
     pokeballsKitx3.push(new Pokemon({ name: pokemonName, element: pokemonElement[pokemonElementChosen], moves: pokemonElement[pokemonElementChosen].moves }))
 }
+
 const randomNumber = (max = 4, min = 1) => {
     return (Math.floor(Math.random() * (4 - 1)) + 1)
 }
+
 const createEnemy = () => {
     let random = randomNumber()
     switch (random) {
@@ -79,6 +87,7 @@ const createEnemy = () => {
             return new Pokemon({ name: 'Bulbasaur', healthPoints: 100, moves: pokemonElement[String(random)].moves, element: { type: pokemonElement[String(random)].type, strongAgainst: pokemonElement[String(random)].strongAgainst, weakAgainst: pokemonElement[String(random)].weakAgainst } })
     }
 }
+
 const showMoves = (pokemon) => {
     let movesString = ''
     for (let index = 0; index < pokemon.moves.length; index++) {
@@ -86,9 +95,11 @@ const showMoves = (pokemon) => {
     }
     return movesString
 }
+
 const showStats = (pokemon) => {
     return `${pokemon.name}\n \t HP: ${pokemon.healthPoints}\n \t Type: ${pokemon.element.type}\n`
 }
+
 const showPokemon = (pokemon) => {
     console.log(
         showStats(pokemon),
@@ -96,9 +107,11 @@ const showPokemon = (pokemon) => {
         showMoves(pokemon)
     )
 }
+
 const winner = (winner) => {
     console.log(winner)
 }
+
 const choosePokemonToAttack = (pokemones, enemies, index) => {
     let pokemonSelected = index
         let attackSelected = 0
@@ -111,9 +124,11 @@ const choosePokemonToAttack = (pokemones, enemies, index) => {
         } while (enemySelectedPosition !== 1 && enemySelectedPosition !== 2 && enemySelectedPosition !== 3);
     pokemones[pokemonSelected].healthPoints !== 0 ? pokemones[pokemonSelected].attack({enemySelected: enemies[enemySelectedPosition - 1],attackSelected: attackSelected}) : console.log('Mi pokemon' + pokemones[pokemonSelected].name + ': No puede atacar...')
 }
+
 const attackRandom = (pokemons, enemies, index) => {
     enemies[index].healthPoints !== 0 ? enemies[index].attack({enemySelected: pokemons[randomNumber() - 1], attackSelected: randomNumber()}) : console.log(enemies[index].name + '(enemigo): No puede atacar...')
 }
+
 const battle = (pokeballsKitx3, enemies) => {
     let canFight = true
     let count
@@ -144,6 +159,7 @@ const battle = (pokeballsKitx3, enemies) => {
         }    
     }while (canFight)
 }
+
 const main = () => {
     for (let index = 0; index < 3; index++) {
         pokemonCreationMenu(pokeballsKitx3)
@@ -152,4 +168,5 @@ const main = () => {
     battle(pokeballsKitx3, enemies)
     console.log('juego terminado')
 }
+
 main()
